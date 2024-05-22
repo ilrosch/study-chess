@@ -18,6 +18,10 @@
   --regular: 400;
 }
 
+.white {
+  color: var(--white);
+}
+
 .dark {
   color: var(--dark);
 }
@@ -28,4 +32,8 @@
 
 .header-color {
   color: var(--header-elements);
+}
+
+.secondary {
+  color: var(--secondary);
 }

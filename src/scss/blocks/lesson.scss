@@ -1,5 +1,6 @@
 .lesson {
   margin-top: 140px;
+  padding-bottom: 90px;
 
   display: flex;
   align-items: flex-start;
@@ -12,6 +13,7 @@
 
   @media (max-width: 500px) {
     margin-top: 100px;
+    padding-bottom: 60px;
   }
 }
 
