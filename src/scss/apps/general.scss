@@ -14,3 +14,44 @@
 @import './buttons.scss';
 
 // Другие общие стили
+.container {
+  position: relative;
+  max-width: 1440px;
+  width: 100%;
+
+  padding: 0 40px;
+  margin: 0 auto;
+
+  @media (max-width: 500px) {
+    padding: 0 20px;
+  }
+}
+
+.arrow {
+  display: block;
+
+  width: 0;
+  height: 0;
+
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+.opacity {
+  opacity: 1;
+  transition: opacity 0.3s;
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.br-3 {
+  border-radius: 3px;
+}
+
+.br-5 {
+  border-radius: 5px;
+}
