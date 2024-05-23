@@ -1,6 +1,7 @@
 import * as flsFunctions from './modules/functions.js';
 
 import './modules/navigation.js';
+import './modules/render.js';
 import './modules/slider.js';
 
 // Прочие функции и скрипты

@@ -80,12 +80,22 @@
   width: calc(100% - 50px);
   margin: 0 auto;
 
+  &__wrapper {
+    display: flex;
+    gap: 10px;
+  }
+
   // .lesson-slider__btn
 
   &__btn {
     width: 45px;
     aspect-ratio: 1 / 1;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--dark);
     border: 2px solid var(--secondary);
     background: var(--white);
 
@@ -196,9 +206,5 @@
 
   &__image {
     width: 80%;
-
-    img {
-      width: 100%;
-    }
   }
 }
