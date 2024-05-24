@@ -99,10 +99,51 @@
       display: none;
     }
   }
+}
 
-  // .header__lang
+.lang {
+  position: relative;
+  // .lang__active
 
-  &__lang {
+  &__active {
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+
+    background: var(--dark);
+
+    padding: 10px;
+    margin: -10px;
+  }
+}
+
+.lang-list {
+  position: absolute;
+  top: 25px;
+  left: -19px;
+
+  display: none;
+  flex-direction: column;
+  padding: 6px 0;
+
+  background: var(--header-elements);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+
+  opacity: 0;
+  // .lang-list__item
+
+  &__item {
+    padding: 5px 20px;
+
+    a {
+      font-size: 20px;
+      line-height: 20px;
+      letter-spacing: 0.1px;
+      color: inherit;
+
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 

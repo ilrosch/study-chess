@@ -1,4 +1,4 @@
-import lessons from './lessons.js';
+const lessons = window.Storage;
 
 const imgHeight = () => {
   const chess = document.querySelector('.chess');
@@ -82,15 +82,16 @@ const prevNextNavigation = () => {
   prevBtn.addEventListener('click', () => {
     const current = Number(window.location.hash.slice(1));
     const idLevel = (current < 2 ? 2 : current) - 1;
-    window.location.href = `http://${window.location.host}/#${idLevel}`;
+    window.location.href = `#${idLevel}`;
     render(idLevel);
   });
 
   nextBtns.forEach((nextBtn) => {
     nextBtn.addEventListener('click', () => {
-      const current = Number(window.location.hash.slice(1));
+      const hash = Number(window.location.hash.slice(1));
+      const current = (hash === 0) ? 1 : hash;
       const idLevel = (current < lessons.length ? current : lessons.length - 1) + 1;
-      window.location.href = `http://${window.location.host}/#${idLevel}`;
+      window.location.href = `#${idLevel}`;
       render(idLevel);
     });
   });

@@ -45,3 +45,20 @@ const modalOpenOrClose = () => {
 };
 
 modalOpenOrClose();
+
+const changeLang = () => {
+  const box = document.querySelector('.lang');
+  const list = box.querySelector('.lang-list');
+
+  document.addEventListener('click', (e) => {
+    if (e.target.hasAttribute('data-lang') && !list.classList.contains('open-list')) {
+      list.classList.add('open-list');
+      fadeIn(list, 500, 'flex');
+    } else {
+      list.classList.remove('open-list');
+      fadeOut(list, 500);
+    }
+  });
+};
+
+changeLang();
