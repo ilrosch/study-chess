@@ -9,6 +9,7 @@
   padding: 18px 0;
 
   z-index: 9;
+  transition: translate 0.3s;
 
   // .header__body
 
@@ -103,4 +104,8 @@
 
   &__lang {
   }
+}
+
+.out {
+  translate: 0 -100%;
 }

@@ -1,5 +1,14 @@
 import lessons from './lessons.js';
 
+const imgHeight = () => {
+  const chess = document.querySelector('.chess');
+  const box = document.querySelector('.lesson-block');
+  const slider = document.querySelector('.lesson-slider');
+
+  const img = document.querySelector('.lesson-image');
+  img.style.height = `${chess.clientHeight - box.clientHeight - slider.clientHeight - 65}px`;
+};
+
 const render = (idLesson) => {
   const section = document.querySelector('.lesson');
   const title = section.querySelector('.lesson-block__title');
@@ -37,11 +46,14 @@ const render = (idLesson) => {
     }
 
     if (i === idLesson) {
-      a.classList.add('lesson-slider__btn--active');
+      a.classList.add('lesson-slider__btn--active', 'swiper-slide-active');
     }
 
     levels.append(a);
   }
+
+  // Картинка
+  imgHeight();
 
   // Шахматная доска
   cells.forEach((cell) => { cell.innerHTML = ''; });
@@ -65,7 +77,7 @@ levels.addEventListener('click', (e) => {
 
 const prevNextNavigation = () => {
   const prevBtn = document.getElementById('header-btn-prev');
-  const nextBtn = document.getElementById('header-btn-next');
+  const nextBtns = document.querySelectorAll('[data-next]');
 
   prevBtn.addEventListener('click', () => {
     const current = Number(window.location.hash.slice(1));
@@ -74,11 +86,13 @@ const prevNextNavigation = () => {
     render(idLevel);
   });
 
-  nextBtn.addEventListener('click', () => {
-    const current = Number(window.location.hash.slice(1));
-    const idLevel = (current < lessons.length ? current : lessons.length - 1) + 1;
-    window.location.href = `http://${window.location.host}/#${idLevel}`;
-    render(idLevel);
+  nextBtns.forEach((nextBtn) => {
+    nextBtn.addEventListener('click', () => {
+      const current = Number(window.location.hash.slice(1));
+      const idLevel = (current < lessons.length ? current : lessons.length - 1) + 1;
+      window.location.href = `http://${window.location.host}/#${idLevel}`;
+      render(idLevel);
+    });
   });
 };
 

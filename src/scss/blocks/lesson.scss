@@ -146,6 +146,12 @@
   }
 
   img {
+    min-width: 100%;
+    width: auto;
+    min-height: 100%;
+    height: auto;
+
+    aspect-ratio: auto 1 / 1;
   }
 }
 
