@@ -7,12 +7,12 @@ const srcFolder = `./src`;
 
 export const path = {
 	build: {
-		js: `${buildFolder}/js/`,
-		css: `${buildFolder}/css/`,
+		js: `${buildFolder}/common_files/js/`,
+		css: `${buildFolder}/common_files/css/`,
 		html: `${buildFolder}/`,
-		images: `${buildFolder}/img/`,
-		fonts: `${buildFolder}/fonts/`,
-		files: `${buildFolder}/files/`
+		images: `${buildFolder}/common_files/img/`,
+		fonts: `${buildFolder}/common_files/fonts/`,
+		files: `${buildFolder}/common_files/files/`
 	},
 	src: {
 		jsFiles: `${srcFolder}/js/`,

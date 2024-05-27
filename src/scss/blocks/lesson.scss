@@ -80,11 +80,6 @@
   width: calc(100% - 50px);
   margin: 0 auto;
 
-  &__wrapper {
-    display: flex;
-    gap: 10px;
-  }
-
   // .lesson-slider__btn
 
   &__btn {
@@ -128,6 +123,7 @@
 
     .swiper-button-disabled {
       opacity: 0.4;
+      cursor: default;
     }
 
     .swiper-button-lock {

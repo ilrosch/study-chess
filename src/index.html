@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="ru">
-  @@include('html/head.html', { "title":"StudyChess" })
+<html lang="en">
   <body>
-    @@include('html/header.html',{})
-    <main class="container">@@include('html/lesson.html',{})</main>
-    @@include('html/footer.html',{}) @@include('html/modal.html',{})
-    <script src="js/lesson-ru.min.js"></script>
-    <script src="js/app.min.js"></script>
+    <script>
+      const lang = navigator.language.slice(0, 2);
+      switch (lang) {
+        case 'ru':
+          window.location.href = '/ru';
+          break;
+        case 'en':
+          window.location.href = '/en';
+          break;
+        default:
+          window.location.href = '/en';
+      }
+    </script>
   </body>
 </html>

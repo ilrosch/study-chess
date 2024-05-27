@@ -1,3 +1,21 @@
+import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
+
+const config = {
+  // configure Swiper to use modules
+  modules: [Navigation],
+
+  direction: 'horizontal',
+  slidesPerView: 'auto',
+  spaceBetween: 10,
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+};
+
 const lessons = window.Storage;
 
 const imgHeight = () => {
@@ -52,6 +70,9 @@ const render = (idLesson) => {
     levels.append(a);
   }
 
+  config.initialSlide = idLesson - 1;
+  new Swiper('.swiper', config);
+
   // Картинка
   imgHeight();
 
@@ -61,7 +82,7 @@ const render = (idLesson) => {
     const cell = [...cells].find((item) => item.dataset.cell === id.toString());
     const img = document.createElement('img');
     img.classList.add('chess-item__image');
-    img.src = `img/chess-themes/${el}.png`;
+    img.src = `/common_files/img/chess-themes/${el}.png`;
 
     cell.append(img);
   });
