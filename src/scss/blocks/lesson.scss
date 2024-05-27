@@ -183,13 +183,13 @@
   align-items: center;
   justify-content: center;
 
-  cursor: pointer;
-
   &--black {
+    color: var(--secondary);
     background: var(--primary);
   }
 
   &--white {
+    color: var(--primary);
     background: var(--secondary);
   }
 
@@ -208,5 +208,39 @@
 
   &__image {
     width: 80%;
+  }
+}
+
+[data-marker]::before {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: inherit;
+  content: attr(data-marker);
+
+  @media (max-width: 500px) {
+    bottom: 4px;
+    left: 4px;
+
+    font-size: 10px;
+  }
+}
+
+[data-marker-num]::after {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: inherit;
+  content: attr(data-marker-num);
+
+  @media (max-width: 500px) {
+    top: 4px;
+    right: 4px;
+
+    font-size: 10px;
   }
 }

@@ -24,7 +24,12 @@ const imgHeight = () => {
   const slider = document.querySelector('.lesson-slider');
 
   const img = document.querySelector('.lesson-image');
-  img.style.height = `${chess.clientHeight - box.clientHeight - slider.clientHeight - 65}px`;
+  const height = chess.clientHeight - box.clientHeight - slider.clientHeight - 65;
+  if (height < 250) {
+    img.style.height = 0;
+  } else {
+    img.style.height = `${height}px`;
+  }
 };
 
 const render = (idLesson) => {
