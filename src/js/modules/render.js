@@ -47,11 +47,32 @@ const render = (idLesson) => {
   // Описание урока
   descr.innerHTML = '';
   lesson.content.forEach((text) => {
-    const p = document.createElement('p');
-    p.classList.add('lesson-block__text', 'dark');
-    p.textContent = text;
+    if (typeof text === 'object') {
+      const box = document.createElement('div');
+      box.classList.add('lesson-block__box');
 
-    descr.append(p);
+      const subtitle = document.createElement('p');
+      subtitle.classList.add('lesson-block__subtitle', 'dark');
+      subtitle.innerHTML = text.title;
+
+      const ul = document.createElement('ul');
+      ul.classList.add('lesson-block-list');
+
+      text.items.forEach((item) => {
+        const li = document.createElement('li');
+        li.classList.add('lesson-block-list__item', 'dark');
+        li.innerHTML = item;
+        ul.append(li);
+      });
+
+      box.append(subtitle, ul);
+      descr.append(box);
+    } else {
+      const p = document.createElement('p');
+      p.classList.add('lesson-block__text', 'dark');
+      p.innerHTML = text;
+      descr.append(p);
+    }
   });
 
   // Уровни

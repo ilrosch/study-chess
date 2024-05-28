@@ -66,6 +66,27 @@
     gap: 1em;
   }
 
+  &__subtitle {
+    font-size: 16px;
+    line-height: 121%;
+    letter-spacing: 0.1px;
+
+    margin-bottom: 10px;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-left: 1.5em;
+
+    &__item {
+      list-style: disc;
+      font-size: 15px;
+    }
+  }
+
   // .lesson-block__text
 
   &__text {
@@ -133,7 +154,10 @@
 }
 
 .lesson-image {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   margin-top: 40px;
   overflow: hidden;
 
