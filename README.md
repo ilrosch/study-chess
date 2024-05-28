@@ -28,7 +28,12 @@ To install and run the project locally, follow the steps below:
 
 1. Clone the repository:
    ```bash
+   # HTTPS
    git clone https://github.com/ilrosch/study-chess.git
+   ```
+   ```bash
+   # SSH
+   git clone git@github.com:ilrosch/study-chess.git
    ```
 2. Navigate to the project directory:
    ```bash
