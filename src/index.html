@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <script>
+      const lang = navigator.language.slice(0, 2);
+      switch (lang) {
+        case 'ru':
+          window.location.href = '/ru';
+          break;
+        case 'en':
+          window.location.href = '/en';
+          break;
+        default:
+          window.location.href = '/en';
+      }
+    </script>
+  </body>
+</html>
