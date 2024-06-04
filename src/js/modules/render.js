@@ -1,6 +1,8 @@
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
 
+import getAvailableMoves from './chessMove.js';
+
 const config = {
   // configure Swiper to use modules
   modules: [Navigation],
@@ -104,13 +106,34 @@ const render = (idLesson) => {
 
   // Шахматная доска
   cells.forEach((cell) => { cell.innerHTML = ''; });
-  lesson.chess.forEach(({ cell: id, element: el }) => {
+  lesson.chess.forEach(({ cell: id, element: el, active }) => {
     const cell = [...cells].find((item) => item.dataset.cell === id.toString());
     const img = document.createElement('img');
     img.classList.add('chess-item__image');
     img.src = `/common_files/img/chess-themes/${el}.png`;
+    img.setAttribute('data-name', el);
+
+    if (active) {
+      img.setAttribute('data-active', active);
+    }
 
     cell.append(img);
+  });
+
+  // Доступные ходы фигурой
+  const activeFigures = section.querySelectorAll('[data-active=true]');
+  activeFigures.forEach((figure) => {
+    figure.addEventListener('click', (e) => {
+      const name = e.target.dataset.name.slice(1);
+      const { cell } = e.currentTarget.parentNode.dataset;
+
+      // Здесь происходит вызов ф-ции, которая возвращает доступные ходы ввиде массива
+      // Тестируй на уроке 2, другие не будут сейчас работать, нужно доделать
+      const availableMoves = getAvailableMoves(name, cell);
+      // console.log(availableMoves); // [34, 54, 45]
+
+      // Дальше будет написано взаимодействие
+    });
   });
 };
 
@@ -148,3 +171,5 @@ prevNextNavigation();
 
 const id = Number(window.location.hash.slice(1)) || 1;
 render(id);
+
+window.addEventListener('resize', () => imgHeight());

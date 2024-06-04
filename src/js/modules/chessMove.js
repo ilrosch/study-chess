@@ -11,9 +11,7 @@ const getAvailableMoves = (figure, position) => {
     return `${col}${coords[0]}`;
   };
 
-  const isInBounds = (x, y) => {
-    return x >= 1 && x <= boardSize && y >= 1 && y <= boardSize;
-  };
+  const isInBounds = (x, y) => x >= 1 && x <= boardSize && y >= 1 && y <= boardSize;
 
   const directions = {
     r: [[1, 0], [-1, 0], [0, 1], [0, -1]], // ладья
@@ -21,11 +19,11 @@ const getAvailableMoves = (figure, position) => {
     q: [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]], // ферзь
     n: [[2, 1], [2, -1], [-2, 1], [-2, -1], [1, 2], [1, -2], [-1, 2], [-1, -2]], // конь
     k: [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]], // король
-    p: [[1, 0], [1, 1], [1, -1]] // пешка
+    p: [[1, 0], [1, 1], [1, -1]], // пешка
   };
 
-  let availableMoves = [];
-  let [x, y] = positionToCoords(position);
+  const availableMoves = [];
+  const [x, y] = positionToCoords(position);
 
   const addLinearMoves = (steps) => {
     steps.forEach(([dx, dy]) => {
@@ -41,13 +39,15 @@ const getAvailableMoves = (figure, position) => {
 
   const addSingleMoves = (steps) => {
     steps.forEach(([dx, dy]) => {
-      let newX = x + dx;
-      let newY = y + dy;
+      const newX = x + dx;
+      const newY = y + dy;
       if (isInBounds(newX, newY)) {
         availableMoves.push(coordsToPosition([newX, newY]));
       }
     });
   };
+
+  console.log(figure, typeof position);
 
   switch (figure) {
     case 'r':
@@ -66,7 +66,7 @@ const getAvailableMoves = (figure, position) => {
       addSingleMoves(directions.k);
       break;
     case 'p':
-      let pawnMoves = directions.p.filter(([dx, dy]) => isInBounds(x + dx, y + dy));
+      const pawnMoves = directions.p.filter(([dx, dy]) => isInBounds(x + dx, y + dy));
       pawnMoves.forEach(([dx, dy]) => {
         availableMoves.push(coordsToPosition([x + dx, y + dy]));
       });
@@ -77,7 +77,7 @@ const getAvailableMoves = (figure, position) => {
 };
 
 const highlightCells = (moves) => {
-  moves.forEach(move => {
+  moves.forEach((move) => {
     const cell = document.querySelector(`[data-cell="${move}"]`);
     if (cell) {
       cell.classList.add('highlight');
@@ -87,7 +87,7 @@ const highlightCells = (moves) => {
 
 const removeHighlights = () => {
   const highlightedCells = document.querySelectorAll('.highlight');
-  highlightedCells.forEach(cell => {
+  highlightedCells.forEach((cell) => {
     cell.classList.remove('highlight');
   });
 };
@@ -104,24 +104,24 @@ const movePiece = (from, to) => {
 };
 
 // Обработчики событий для фигур
-document.querySelectorAll('.chess-piece').forEach(piece => {
-  piece.addEventListener('click', (event) => {
-    removeHighlights();
-    const pieceType = piece.getAttribute('data-piece-type');
-    const position = piece.parentElement.getAttribute('data-cell');
-    const moves = getAvailableMoves(pieceType, position);
-    highlightCells(moves);
+// document.querySelectorAll('.chess-piece').forEach((piece) => {
+//   piece.addEventListener('click', (event) => {
+//     removeHighlights();
+//     const pieceType = piece.getAttribute('data-piece-type');
+//     const position = piece.parentElement.getAttribute('data-cell');
+//     const moves = getAvailableMoves(pieceType, position);
+//     highlightCells(moves);
 
-    const board = document.querySelector('.chess-board');
-    board.addEventListener('click', function boardClickListener(event) {
-      if (event.target.matches('.highlight')) {
-        const targetCell = event.target.getAttribute('data-cell');
-        movePiece(position, targetCell);
-        removeHighlights();
-        board.removeEventListener('click', boardClickListener);
-      }
-    }, { once: true });
-  });
-});
+//     const board = document.querySelector('.chess-board');
+//     board.addEventListener('click', function boardClickListener(event) {
+//       if (event.target.matches('.highlight')) {
+//         const targetCell = event.target.getAttribute('data-cell');
+//         movePiece(position, targetCell);
+//         removeHighlights();
+//         board.removeEventListener('click', boardClickListener);
+//       }
+//     }, { once: true });
+//   });
+// });
 
 export default getAvailableMoves;
