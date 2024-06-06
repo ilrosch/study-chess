@@ -120,6 +120,12 @@
     &--active {
       background: var(--secondary);
     }
+
+    &--finish {
+      color: var(--secondary);
+      background: var(--primary);
+      border-color: var(--primary);
+    }
   }
 
   &__arrow {
@@ -209,6 +215,22 @@
   align-items: center;
   justify-content: center;
 
+  &::before {
+    position: absolute;
+
+    min-width: 20px;
+    width: 40%;
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+    background: var(--chess-active);
+
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    content: '';
+  }
+
   &--black {
     color: var(--secondary);
     background: var(--primary);
@@ -220,6 +242,23 @@
   }
 
   &--active {
+    cursor: pointer;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &__image {
+    position: relative;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
     &::before {
       position: absolute;
 
@@ -227,46 +266,61 @@
       aspect-ratio: 1 / 1;
 
       border-radius: 50%;
-      background: var(--chess-active);
+      background-color: var(--chess-active);
+
+      opacity: 0;
+      transition: opacity 0.3s;
+
       content: '';
     }
-  }
 
-  &__image {
-    width: 80%;
-  }
-}
+    &--active {
+      &::before {
+        opacity: 1;
+      }
+    }
 
-[data-marker]::before {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  font-family: inherit;
-  font-size: 14px;
-  color: inherit;
-  content: attr(data-marker);
-
-  @media (max-width: 500px) {
-    bottom: 4px;
-    left: 4px;
-
-    font-size: 10px;
+    img {
+      position: relative;
+      width: 80%;
+    }
   }
 }
 
-[data-marker-num]::after {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  font-family: inherit;
-  font-size: 14px;
-  color: inherit;
-  content: attr(data-marker-num);
+[data-marker] {
+  &::before {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    color: inherit;
+    content: attr(data-marker);
 
-  @media (max-width: 500px) {
-    top: 4px;
-    right: 4px;
+    @media (max-width: 500px) {
+      bottom: 4px;
+      left: 4px;
 
-    font-size: 10px;
+      font-size: 10px;
+    }
+  }
+}
+
+[data-marker-num] {
+  &:before {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    color: inherit;
+    content: attr(data-marker-num);
+
+    @media (max-width: 500px) {
+      top: 4px;
+      right: 4px;
+
+      font-size: 10px;
+    }
   }
 }

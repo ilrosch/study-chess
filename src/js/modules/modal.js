@@ -17,25 +17,25 @@ const fadeOut = (el, timeout) => {
   }, timeout);
 };
 
-const modalOpenOrClose = () => {
-  // const btnOpen = document.querySelector('.open-modal');
-
+const modalOpenOrClose = (id) => {
   const overlay = document.getElementById('overlay');
-  const modal = overlay.querySelector('#modal-finish');
+  let modal;
 
-  // btnOpen.addEventListener('click', () => {
-  //   const linkNext = modal.querySelector('#modal-next');
+  if (id === 'finish') {
+    modal = overlay.querySelector('#modal-finish');
 
-  //   const current = Number(window.location.hash.slice(1));
-  //   linkNext.href = `#${(current === 0 ? 1 : current) + 1}`;
+    const linkNext = modal.querySelector('#modal-next');
+    const current = Number(window.location.hash.slice(1));
+    linkNext.href = `#${(current === 0 ? 1 : current) + 1}`;
+  } else {
+    modal = overlay.querySelector('#modal-reset');
+  }
 
-  //   document.body.classList.add('lock');
-  //   fadeIn(overlay, 1000, 'flex');
-  //   fadeIn(modal, 1500);
-  // });
+  document.body.classList.add('lock');
+  fadeIn(overlay, 1000, 'flex');
+  fadeIn(modal, 1500);
 
   overlay.addEventListener('click', (e) => {
-    console.log(e.target.dataset);
     if (e.target.id === 'modal-next' || e.target.hasAttribute('data-close') || e.target.className === 'overlay') {
       document.body.classList.remove('lock');
       fadeOut(modal, 1000);
@@ -43,8 +43,6 @@ const modalOpenOrClose = () => {
     }
   });
 };
-
-modalOpenOrClose();
 
 const changeLang = () => {
   const box = document.querySelector('.lang');
@@ -62,3 +60,5 @@ const changeLang = () => {
 };
 
 changeLang();
+
+export default modalOpenOrClose;

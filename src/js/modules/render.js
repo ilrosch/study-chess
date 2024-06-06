@@ -1,6 +1,7 @@
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
 
+import modal from './modal.js';
 import getAvailableMoves from './chessMove.js';
 
 const config = {
@@ -101,38 +102,97 @@ const render = (idLesson) => {
   config.initialSlide = idLesson - 1;
   new Swiper('.swiper', config);
 
+  if (lesson.answer === 'ok') {
+    localStorage.setItem(`lesson-${idLesson}-finish`, true);
+  }
+
   // Картинка
   imgHeight();
 
   // Шахматная доска
-  cells.forEach((cell) => { cell.innerHTML = ''; });
+  cells.forEach((cell) => {
+    if (cell.children.namedItem('picture')) {
+      cell.children.namedItem('picture').remove();
+    }
+  });
   lesson.chess.forEach(({ cell: id, element: el, active }) => {
     const cell = [...cells].find((item) => item.dataset.cell === id.toString());
+    const picture = document.createElement('picture');
+    picture.classList.add('chess-item__image');
+    picture.setAttribute('data-name', el);
+    picture.setAttribute('name', 'picture');
     const img = document.createElement('img');
-    img.classList.add('chess-item__image');
     img.src = `/common_files/img/chess-themes/${el}.png`;
-    img.setAttribute('data-name', el);
 
     if (active) {
-      img.setAttribute('data-active', active);
+      picture.setAttribute('data-active', active);
     }
 
-    cell.append(img);
+    picture.append(img);
+    cell.append(picture);
   });
+
+  // Проверка
+  const result = [];
+  const check = (cell) => {
+    const sizes = lesson.answer.map((arr) => arr.length - 1);
+
+    const checkPrefix = (prefix) => (
+      prefix.slice(1, result.length).every((el, i) => el === result[i])
+    );
+
+    result.push(Number(cell));
+
+    if (lesson.answer.some(checkPrefix)) {
+      if (sizes.includes(result.length)) {
+        return 'finish';
+      }
+
+      return true;
+    }
+
+    return false;
+  };
+
+  const clean = (figure) => {
+    figure.classList.remove('chess-item__image--active');
+    cells.forEach((c) => c.classList.remove('chess-item--active'));
+  };
 
   // Доступные ходы фигурой
   const activeFigures = section.querySelectorAll('[data-active=true]');
   activeFigures.forEach((figure) => {
     figure.addEventListener('click', (e) => {
-      const name = e.target.dataset.name.slice(1);
-      const { cell } = e.currentTarget.parentNode.dataset;
+      if (e.currentTarget.classList.contains('chess-item__image--active')) {
+        clean(figure);
+      } else {
+        const name = e.currentTarget.dataset.name.slice(1);
+        const { cell } = e.currentTarget.parentNode.dataset;
+        const availableMoves = getAvailableMoves(name, cell); // [35, 47, 43]
+        const moves = availableMoves.map((m) => section.querySelector(`[data-cell='${m}']`));
+        figure.classList.add('chess-item__image--active');
+        moves.forEach((m) => {
+          m.classList.add('chess-item--active');
 
-      // Здесь происходит вызов ф-ции, которая возвращает доступные ходы ввиде массива
-      // Тестируй на уроке 2, другие не будут сейчас работать, нужно доделать
-      const availableMoves = getAvailableMoves(name, cell);
-      // console.log(availableMoves); // [34, 54, 45]
+          m.addEventListener('click', (event) => {
+            figure.classList.remove('chess-item__image--active');
+            m.append(figure);
 
-      // Дальше будет написано взаимодействие
+            const prefix = check(event.currentTarget.dataset.cell);
+
+            if (prefix === 'finish') {
+              localStorage.setItem(`lesson-${idLesson}-finish`, true);
+              modal('finish');
+              clean(figure);
+            }
+
+            if (!prefix) {
+              render(idLesson);
+              modal('reset');
+            }
+          }, { once: true });
+        });
+      }
     });
   });
 };
