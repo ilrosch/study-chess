@@ -10,20 +10,20 @@
     <header class="header" id="header">
       <div class="container">
         <div class="header__body">
-          <a href="/" class="header__logo header-color opacity" title="Логотип и название проекта">StudyChess</a>
+          <a href="/" class="header__logo header-color opacity" title="Название проекта">StudyChess</a>
           <div class="header__btns">
-            <button class="btn header__btn br-3 header-color opacity" id="header-btn-prev" title="Предыдущий урок" aria-label="Переход к предыдущему уроку">
+            <a href="#" class="btn header__btn br-3 header-color opacity" id="header-btn-prev" title="Предыдущий урок" aria-label="Переход к предыдущему уроку">
               <span class="header__btn-arrow arrow"></span>
               <span class="header__btn-text">Предыдущий</span>
-            </button>
-            <button class="btn header__btn br-3 black opacity" id="header-btn-next" data-next title="Следующий урок" aria-label="Переход к cледующему уроку">
+            </a>
+            <a href="#" class="btn header__btn br-3 black opacity" id="header-btn-next" data-next title="Следующий урок" aria-label="Переход к cледующему уроку">
               <span class="header__btn-arrow arrow"></span>
               <span class="header__btn-text">Следующий</span>
-            </button>
+            </a>
           </div>
 
           <div class="lang">
-            <button class="btn lang__active header-color upper" data-lang>ru</button>
+            <button class="btn lang__active header-color upper" data-lang title="Сменить язык">ru</button>
             <ul class="lang-list br-3">
               <li class="lang-list__item dark upper">
                 <a href="/en">en</a>
@@ -152,10 +152,7 @@
           title: 'Урок 2: Пешка',
           content: ['<b>Цель урока:</b> изучить, как ходит и бьет пешка.', '<b>Ходы:</b> Пешка ходит вперед на одну клетку. С начальной позиции может ходить на две клетки вперед.', '<b>Взятие фигур:</b> Пешка бьет фигуры по диагонали на одну клетку вперед.', { title: '<b>Задание:</b>', items: ['Сделайте первый ход.'] }],
           chess: [{ cell: 53, element: 'wp', active: true }],
-          answer: [
-            [1, 37],
-            [1, 45],
-          ],
+          answer: true,
         },
 
         {
@@ -175,8 +172,8 @@
             { title: '<b>Задание:</b>', items: ['Ваш противник сделал ход пешкой d7-d5, создав ситуацию для взятия на проходе. Сделайте ход, чтобы совершить взятие на проходе.'] },
           ],
           chess: [
-            { cell: 29, element: 'wp' },
-            { cell: 28, element: 'bp', active: true },
+            { cell: 29, element: 'wp', active: true },
+            { cell: 28, element: 'bp' },
           ],
           answer: [[1, 20]],
         },
@@ -186,22 +183,7 @@
           title: 'Урок 5: Ладья',
           content: ['<b>Цель урока:</b> изучить, как ходит и бьет ладья.', '<b>Ходы:</b> Ладья ходит на любое количество клеток по вертикали или горизонтали.', '<b>Взятие фигур:</b> Ладья бьет фигуры, находящиеся на пути её хода по вертикали или горизонтали.', { title: '<b>Задание:</b>', items: ['Сделайте любой ход ладьей.'] }],
           chess: [{ cell: 35, element: 'wr', active: true }],
-          answer: [
-            [1, 3],
-            [1, 11],
-            [1, 19],
-            [1, 27],
-            [1, 43],
-            [1, 51],
-            [1, 59],
-            [1, 33],
-            [1, 34],
-            [1, 36],
-            [1, 37],
-            [1, 38],
-            [1, 39],
-            [1, 40],
-          ],
+          answer: true,
         },
 
         {
@@ -215,16 +197,7 @@
             { title: '<b>Задание:</b>', items: ['Сделайте любой ход конем.'] },
           ],
           chess: [{ cell: 37, element: 'wn', active: true }],
-          answer: [
-            [1, 20],
-            [1, 22],
-            [1, 27],
-            [1, 31],
-            [1, 43],
-            [1, 47],
-            [1, 52],
-            [1, 54],
-          ],
+          answer: true,
         },
 
         {
@@ -241,40 +214,15 @@
             { cell: 28, element: 'wb', active: true },
             { cell: 45, element: 'wb', active: true },
           ],
-          answer: [
-            [1, 1],
-            [1, 10],
-            [1, 19],
-            [1, 37],
-            [1, 46],
-            [1, 55],
-            [1, 64],
-            [1, 7],
-            [1, 14],
-            [1, 21],
-            [1, 35],
-            [1, 42],
-            [1, 49],
-
-            [1, 24],
-            [1, 31],
-            [1, 38],
-            [1, 52],
-            [1, 59],
-            [1, 9],
-            [1, 18],
-            [1, 27],
-            [1, 36],
-            [1, 54],
-            [1, 63],
-          ],
+          answer: true,
         },
 
         {
           id: 8,
           title: 'Урок 8: Ферзь',
           content: ['<b>Цель урока:</b> изучить, как ходит и бьет ферзь.', '<b>Ходы:</b> Ферзь ходит на любое количество клеток по вертикали, горизонтали или диагонали.', '<b>Взятие фигур:</b> Ферзь бьет фигуры, находящиеся на пути его хода по вертикали, горизонтали или диагонали.', { title: '<b>Задание:</b>', items: ['Сделайте любой ход ферзем.'] }],
-          chess: [{ cell: 28, element: 'wq' }],
+          chess: [{ cell: 28, element: 'wq', active: true }],
+          answer: true,
         },
 
         {
@@ -288,16 +236,7 @@
             { title: '<b>Задание:</b>', items: ['Сделайте любой ход королем.'] },
           ],
           chess: [{ cell: 45, element: 'wk', active: true }],
-          answer: [
-            [1, 36],
-            [1, 37],
-            [1, 38],
-            [1, 44],
-            [1, 46],
-            [1, 52],
-            [1, 53],
-            [1, 54],
-          ],
+          answer: true,
         },
 
         {
@@ -398,8 +337,8 @@
             { title: '<b>Задание:</b>', items: ['Сделайте ход, который приведет к ничье.'] },
           ],
           chess: [
-            { cell: 12, element: 'bk', active: true },
-            { cell: 35, element: 'wk' },
+            { cell: 12, element: 'bk' },
+            { cell: 35, element: 'wk', active: true },
             { cell: 27, element: 'bp' },
           ],
           answer: [[1, 27]],

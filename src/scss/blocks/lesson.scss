@@ -103,6 +103,10 @@
   width: calc(100% - 50px);
   margin: 0 auto;
 
+  &__wrapper {
+    padding-top: 5px;
+  }
+
   // .lesson-slider__btn
 
   &__btn {
@@ -117,6 +121,8 @@
     border: 2px solid var(--secondary);
     background: var(--white);
 
+    transition: translate 0.2s;
+
     &--active {
       background: var(--secondary);
     }
@@ -125,6 +131,12 @@
       color: var(--secondary);
       background: var(--primary);
       border-color: var(--primary);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        translate: 0 -5px;
+      }
     }
   }
 
