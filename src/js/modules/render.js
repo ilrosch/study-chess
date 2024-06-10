@@ -21,6 +21,25 @@ const config = {
 
 const lessons = window.Storage;
 
+const finishCourse = () => {
+  const result = lessons.every(({ id }) => localStorage.getItem(`lesson-${id}-finish`));
+  if (result) {
+    modal('all');
+
+    const anew = document.querySelector('[data-anew]');
+    anew.addEventListener('click', () => {
+      localStorage.clear();
+      render(1);
+    });
+
+    return true;
+  }
+
+  return false;
+};
+
+finishCourse();
+
 const imgHeight = () => {
   const chess = document.querySelector('.chess');
   const box = document.querySelector('.lesson-block');
@@ -96,21 +115,26 @@ const madeMoves = (id, answer) => {
 
       if (prefix === 'finish') {
         localStorage.setItem(`lesson-${id}-finish`, true);
-        modal('finish');
-        removeEvents();
+        if (!finishCourse()) {
+          modal('finish');
+        }
       }
 
       if (!prefix) {
         modal('reset');
-        removeEvents();
         render(id);
       }
     }
   }
 
-  const removeEvents = () => { cells.forEach((c) => c.removeEventListener('click', fn)); };
+  // Очистка обработчиков
+  cells.forEach((c) => {
+    const el = c.cloneNode(true);
+    c.parentNode.replaceChild(el, c);
+  });
 
-  cells.forEach((c) => { c.addEventListener('click', fn); });
+  const updatedCells = chess.querySelectorAll('.chess-item');
+  updatedCells.forEach((c) => { c.addEventListener('click', fn); });
 };
 
 const render = (idLesson) => {
@@ -243,7 +267,7 @@ const btnsNavigation = () => {
   const prev = document.getElementById('header-btn-prev');
   const nexts = document.querySelectorAll('[data-next]');
 
-  const current = Number(window.location.hash.slice(1));
+  const current = Number(window.location.hash.slice(1) || 1);
   const idPrev = (current === 1 ? 2 : current) - 1;
   const idNext = (current < lessons.length ? current : lessons.length - 1) + 1;
 
@@ -257,13 +281,13 @@ const prevNextNavigation = () => {
   const prev = document.getElementById('header-btn-prev');
   const nexts = document.querySelectorAll('[data-next]');
 
-  prev.addEventListener('click', () => {
+  prev.addEventListener('click', (e) => {
     btnsNavigation();
     const id = Number(new URL(prev.href).hash.slice(1));
     render(id);
   });
   nexts.forEach((n) => {
-    n.addEventListener('click', () => {
+    n.addEventListener('click', (e) => {
       btnsNavigation();
       const id = Number(new URL(n.href).hash.slice(1));
       render(id);

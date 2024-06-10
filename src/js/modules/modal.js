@@ -27,6 +27,8 @@ const modalOpenOrClose = (id) => {
     const linkNext = modal.querySelector('#modal-next');
     const current = Number(window.location.hash.slice(1));
     linkNext.href = `#${(current === 0 ? 1 : current) + 1}`;
+  } else if (id === 'all') {
+    modal = overlay.querySelector('#modal-all');
   } else {
     modal = overlay.querySelector('#modal-reset');
   }

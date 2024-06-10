@@ -132,4 +132,17 @@
       border: 1px solid var(--header-elements);
     }
   }
+
+  &__text {
+    font-size: 15px;
+    line-height: normal;
+    color: var(--dark);
+
+    margin-bottom: 1em;
+
+    a {
+      font-weight: var(--medium);
+      color: inherit;
+    }
+  }
 }
