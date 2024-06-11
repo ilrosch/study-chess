@@ -3,6 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Chess training materials for beginners and advanced players. Strategies, tactics, theories and practical tips for successful chess play." />
+    <meta name="keywords" content="chess, educational materials, strategies, tactics, chess lessons, chess training, chess theory, chess practice, chess tips" />
+    <meta name="author" content="StudyChess" />
+    <link rel="canonical" href="https://ilrosch.github.io/study-chess/en" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ilrosch.github.io/study-chess/en" />
+    <meta property="og:title" content="Chess training materials" />
+    <meta property="og:description" content="Chess training materials for beginners and advanced players. Strategies, tactics, theories and practical tips for successful chess play." />
+    <meta property="og:image" content="https://ilrosch.github.io/common_files/img/chess-image.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://ilrosch.github.io/study-chess/en" />
+    <meta name="twitter:title" content="Chess training materials" />
+    <meta name="twitter:description" content="Chess training materials for beginners and advanced players. Strategies, tactics, theories and practical tips for successful chess play." />
+    <meta name="twitter:image" content="https://ilrosch.github.io/common_files/img/chess-image.png" />
+
     <title>StudyChess</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/common_files/css/style.min.css" />
@@ -14,14 +33,14 @@
         <div class="header__body">
           <a href="/" class="header__logo header-color opacity" title="Project name">StudyChess</a>
           <div class="header__btns">
-            <button class="btn header__btn br-3 header-color opacity" id="header-btn-prev" title="Previous lesson" aria-label="Go to previous lesson">
+            <a href="#" class="btn header__btn br-3 header-color opacity" id="header-btn-prev" title="Previous lesson" aria-label="Go to previous lesson">
               <span class="header__btn-arrow arrow"></span>
               <span class="header__btn-text">Prev</span>
-            </button>
-            <button class="btn header__btn br-3 black opacity" id="header-btn-next" data-next title="Next lesson" aria-label="Go to next lesson">
+            </a>
+            <a href="#" class="btn header__btn br-3 black opacity" id="header-btn-next" data-next title="Next lesson" aria-label="Go to next lesson">
               <span class="header__btn-arrow arrow"></span>
               <span class="header__btn-text">Next</span>
-            </button>
+            </a>
           </div>
 
           <div class="lang">
@@ -84,11 +103,29 @@
 
     <div class="overlay" id="overlay">
       <div class="modal br-5" id="modal-finish">
-        <button class="modal__close" title="Close" data-close aria-label="Close the modal window"></button>
+        <button class="modal__close" title="Close" data-close aria-label="Close modal window"></button>
         <div class="modal__title dark">You have successfully completed the lesson!</div>
         <div class="modal__btns">
-          <a href="#" class="modal__link br-3 opacity" id="modal-next" data-next title="Go to next lesson">Next lesson</a>
-          <button class="modal__link br-3 opacity" data-close title="Back to lesson">Back</button>
+          <a href="#" class="modal__link br-3 opacity" id="modal-next" data-next title="Go to the next lesson">Next lesson</a>
+          <button class="modal__link br-3 opacity" data-close title="Return to the lesson">Stay</button>
+        </div>
+      </div>
+
+      <div class="modal br-5" id="modal-reset">
+        <button class="modal__close" title="Close" data-close aria-label="Close modal window"></button>
+        <div class="modal__title dark">Sorry, try again!</div>
+        <div class="modal__btns">
+          <button class="modal__link br-3 opacity" data-close title="Return to the lesson">Retry</button>
+        </div>
+      </div>
+
+      <div class="modal br-5" id="modal-all">
+        <button class="modal__close" title="Close" data-close aria-label="Close modal window"></button>
+        <div class="modal__title dark">You have completed all the lessons!</div>
+        <p class="modal__text">This is just the beginning of your chess journey. There are still many mysteries of the chess world ahead of you. We recommend continuing to improve your game skills by using great projects: <a href="https://lichess.org/" target="_blank">Lichess.org</a> and <a href="https://www.chess.com/" target="_blank">Chess.com</a></p>
+        <div class="modal__btns">
+          <a href="#" class="modal__link br-3 opacity" id="modal-next" data-anew data-close title="Start over">Start over</a>
+          <button class="modal__link br-3 opacity" data-close title="Return to the lesson">Stay</button>
         </div>
       </div>
     </div>
@@ -100,9 +137,9 @@
           title: 'Lesson 1: Introduction to Chess',
           content: [
             '<b>Lesson Objective</b>: Familiarize yourself with the basic rules of the game and learn how to set up the pieces on the board.',
-            '<b>Chessboard</b>: consists of 64 squares, alternating in black and white colors. Each square has coordinates: vertical rows (1-8) and horizontal (a-h).',
+            '<b>Chessboard</b>: consists of 64 squares alternating in black and white. Each square has coordinates: vertical rows (1–8) and horizontal (a–h).',
             { title: '<b>Pieces:</b> 32 pieces, 16 for each side:', items: ['8 pawns', '2 rooks', '2 knights', '2 bishops', '1 queen', '1 king'] },
-            { title: '<b>Piece Setup:</b>', items: ['The second row of each player is filled with pawns', 'In the first row: rooks in the corners, next to them knights, then bishops. In the center, the king (on e1 for white and e8 for black) and the queen (on d1 for white and d8 for black)'] },
+            { title: '<b>Setup:</b>', items: ['The second row of each player is filled with pawns', 'In the first row: rooks at the corners, knights next to them, then bishops. In the center, the king (on e1 for white and e8 for black) and queen (on d1 for white and d8 for black)'] },
           ],
           chess: [
             { cell: 1, element: 'br' },
@@ -139,86 +176,97 @@
             { cell: 50, element: 'wp' },
             { cell: 49, element: 'wp' },
           ],
+          answer: 'ok',
         },
 
         {
           id: 2,
-          title: 'Lesson 2: The Pawn',
-          content: ['<b>Lesson Objective:</b> learn how the pawn moves and captures.', '<b>Moves:</b> The pawn moves forward one square. From the starting position, it can move two squares forward.', '<b>Capturing:</b> The pawn captures pieces diagonally one square forward.', '', { title: '<b>Assignment:</b>', items: ['Make the first move.'] }],
-          chess: [{ cell: 53, element: 'wp' }],
+          title: 'Lesson 2: Pawn',
+          content: ['<b>Lesson Objective:</b> learn how the pawn moves and captures.', '<b>Moves:</b> The pawn moves forward one square. From the starting position, it can move forward two squares.', '<b>Capturing:</b> The pawn captures pieces diagonally one square forward.', { title: '<b>Task:</b>', items: ['Make the first move.'] }],
+          chess: [{ cell: 53, element: 'wp', active: true }],
+          answer: true,
         },
 
         {
           id: 3,
           title: 'Lesson 3: Pawn Promotion',
-          content: ['<b>Lesson Objective:</b> learn what pawn promotion is.', 'When a pawn reaches the last rank (8th for white and 1st for black), it can be promoted to any other piece (usually a queen).', { title: '<b>Assignment:</b>', items: ['Promote the passed pawn to any piece.'] }],
-          chess: [{ cell: 13, element: 'wp' }],
+          content: ['<b>Lesson Objective:</b> learn what pawn promotion is.', 'When a pawn reaches the last rank (8th for white and 1st for black), it can be promoted to any other piece (usually a queen).', { title: '<b>Task:</b>', items: ['Promote the pawn to any piece.'] }],
+          chess: [{ cell: 13, element: 'wp', active: true }],
+          answer: [[1, 5]],
+          move: 'pawnPromotion',
         },
 
         {
           id: 4,
           title: 'Lesson 4: En Passant',
-          content: ['<b>Lesson Objective:</b> learn what en passant capture is.', 'If a pawn moves two squares forward and lands next to an opponent’s pawn, that pawn can capture it "en passant" as if it had moved one square forward.', { title: '<b>Assignment:</b>', items: ['Your opponent moved a pawn from d7 to d5, creating an en passant opportunity. Make a move to capture en passant.'] }],
+          content: ['<b>Lesson Objective:</b> learn what en passant is.', 'If a pawn moves forward two squares and lands next to an opponent’s pawn, the opponent’s pawn can capture it "en passant" as if it had moved forward only one square.', { title: '<b>Task:</b>', items: ['Your opponent moved the pawn from d7 to d5, creating an en passant situation. Make the move to capture en passant.'] }],
           chess: [
-            { cell: 29, element: 'wp' },
+            { cell: 29, element: 'wp', active: true },
             { cell: 28, element: 'bp' },
           ],
+          answer: [[1, 20]],
+          move: 'takedown',
         },
 
         {
           id: 5,
-          title: 'Lesson 5: The Rook',
-          content: ['<b>Lesson Objective:</b> learn how the rook moves and captures.', '<b>Moves:</b> The rook moves any number of squares vertically or horizontally.', '<b>Capturing:</b> The rook captures pieces along its path vertically or horizontally.', { title: '<b>Assignment:</b>', items: ['Make any move with the rook.'] }],
-          chess: [{ cell: 35, element: 'wr' }],
+          title: 'Lesson 5: Rook',
+          content: ['<b>Lesson Objective:</b> learn how the rook moves and captures.', '<b>Moves:</b> The rook moves any number of squares vertically or horizontally.', '<b>Capturing:</b> The rook captures pieces along its path vertically or horizontally.', { title: '<b>Task:</b>', items: ['Make any move with the rook.'] }],
+          chess: [{ cell: 35, element: 'wr', active: true }],
+          answer: true,
         },
 
         {
           id: 6,
-          title: 'Lesson 6: The Knight',
+          title: 'Lesson 6: Knight',
           content: [
             '<b>Lesson Objective:</b> learn how the knight moves and captures.',
-            '<b>Moves:</b> The knight moves in an "L" shape: two squares in one direction and one square perpendicularly.',
-            '<b>Capturing:</b> The knight captures pieces located at the end of its move.',
-            '<b>Feature:</b> The knight can jump over other pieces.',
-            { title: '<b>Assignment:</b>', items: ['Make any move with the knight.'] },
+            '<b>Moves:</b> The knight moves in an "L" shape: two squares in one direction and one square perpendicular.',
+            '<b>Capturing:</b> The knight captures pieces on the square it lands on.',
+            '<b>Special Feature:</b> The knight can jump over other pieces.',
+            { title: '<b>Task:</b>', items: ['Make any move with the knight.'] },
           ],
-          chess: [{ cell: 37, element: 'wn' }],
+          chess: [{ cell: 37, element: 'wn', active: true }],
+          answer: true,
         },
 
         {
           id: 7,
-          title: 'Lesson 7: The Bishop',
+          title: 'Lesson 7: Bishop',
           content: [
             '<b>Lesson Objective:</b> learn how the bishop moves and captures.',
             '<b>Moves:</b> The bishop moves any number of squares diagonally.',
             '<b>Capturing:</b> The bishop captures pieces along its path diagonally.',
-            '<b>Feature:</b> The bishop always stays on squares of its color (white bishop on white, black bishop on black).',
-            { title: '<b>Assignment:</b>', items: ['Make any move with the bishop.'] },
+            '<b>Special Feature:</b> The bishop always remains on squares of its own color (white bishop on white squares, black bishop on black squares).',
+            { title: '<b>Task:</b>', items: ['Make any move with the bishop.'] },
           ],
           chess: [
-            { cell: 28, element: 'wb' },
-            { cell: 45, element: 'wb' },
+            { cell: 28, element: 'wb', active: true },
+            { cell: 45, element: 'wb', active: true },
           ],
+          answer: true,
         },
 
         {
           id: 8,
-          title: 'Lesson 8: The Queen',
-          content: ['<b>Lesson Objective:</b> learn how the queen moves and captures.', '<b>Moves:</b> The queen moves any number of squares vertically, horizontally, or diagonally.', '<b>Capturing:</b> The queen captures pieces along its path vertically, horizontally, or diagonally.', { title: '<b>Assignment:</b>', items: ['Make any move with the queen.'] }],
-          chess: [{ cell: 28, element: 'wq' }],
+          title: 'Lesson 8: Queen',
+          content: ['<b>Lesson Objective:</b> learn how the queen moves and captures.', '<b>Moves:</b> The queen moves any number of squares vertically, horizontally, or diagonally.', '<b>Capturing:</b> The queen captures pieces along its path vertically, horizontally, or diagonally.', { title: '<b>Task:</b>', items: ['Make any move with the queen.'] }],
+          chess: [{ cell: 28, element: 'wq', active: true }],
+          answer: true,
         },
 
         {
           id: 9,
-          title: 'Lesson 9: The King',
+          title: 'Lesson 9: King',
           content: [
             '<b>Lesson Objective:</b> learn how the king moves and captures.',
             '<b>Moves:</b> The king moves one square in any direction (forward, backward, sideways, diagonally).',
             '<b>Capturing:</b> The king captures pieces on adjacent squares.',
-            '<b>Feature:</b> The king cannot move to squares that are under attack by opponent pieces.',
-            { title: '<b>Assignment:</b>', items: ['Make any move with the king.'] },
+            '<b>Special Feature:</b> The king cannot move to squares under attack by opponent’s pieces.',
+            { title: '<b>Task:</b>', items: ['Make any move with the king.'] },
           ],
-          chess: [{ cell: 45, element: 'wk' }],
+          chess: [{ cell: 45, element: 'wk', active: true }],
+          answer: true,
         },
 
         {
@@ -227,36 +275,44 @@
           content: [
             '<b>Lesson Objective:</b> learn what castling is and its types.',
             {
-              title: '<b>Castling</b> is a special move involving the king and a rook. They switch places, with the king moving two squares and the rook jumping over it. Several conditions must be met:',
-              items: ['It is the first move for both the king and the rook', 'There are no pieces between the king and the rook', 'There is no check along the path of the castling', 'The king is not in check at the time of castling'],
+              title: '<b>Castling</b> is a special move involving the king and a rook. They switch places, with the king moving two squares and the rook jumping over. Several conditions must be met:',
+              items: ['It is the first move for both the king and the rook', 'There are no pieces between the king and the rook', 'The castling path is not under attack by enemy pieces', 'The king is not in check during the castling move'],
             },
-            { title: '<b>There are two types of castling:</b>', items: ['Short castling — the king moves towards its rook', 'Long castling — the king moves two squares towards the queen’s rook'] },
-            { title: '<b>Assignment:</b>', items: ['Perform castling. To do this, make a king move to the appropriate side.'] },
+            { title: '<b>There are two types of castling:</b>', items: ['Short castling - the king moves towards its rook', 'Long castling - the king moves two squares towards the queen’s rook'] },
+            { title: '<b>Task:</b>', items: ['Perform short castling.'] },
           ],
           chess: [
             { cell: 57, element: 'wr' },
-            { cell: 61, element: 'wk' },
+            { cell: 61, element: 'wk', active: true },
             { cell: 64, element: 'wr' },
           ],
+          answer: [
+            [1, 59],
+            [1, 62],
+          ],
+          move: 'castling',
         },
 
         {
           id: 11,
-
           title: 'Lesson 11: Check',
-          content: ['<b>Lesson Objective:</b> learn what a check to the king is.', 'The king is under attack but can escape.', { title: '<b>Assignment:</b>', items: ['Put the black king in check. To do this, move the bishop.'] }],
+          content: ['<b>Lesson Objective:</b> learn what a check to the king is.', 'The king is under attack but can escape.', { title: '<b>Task:</b>', items: ['Put the black king in check. Make a move with the bishop.'] }],
           chess: [
             { cell: 12, element: 'bk' },
-            { cell: 51, element: 'wb' },
+            { cell: 51, element: 'wb', active: true },
             { cell: 62, element: 'wk' },
             { cell: 55, element: 'wp' },
+          ],
+          answer: [
+            [1, 30],
+            [1, 33],
           ],
         },
 
         {
           id: 12,
           title: 'Lesson 12: Checkmate',
-          content: ['<b>Lesson Objective:</b> learn what checkmate is and the main goal of the game.', 'The king is under attack and cannot escape. The game ends.', '<b>Game Objective:</b> Checkmate the opponent’s king.', { title: '<b>Assignment:</b>', items: ['Checkmate the black king in one move.'] }],
+          content: ['<b>Lesson Objective:</b> learn what checkmate is and the main goal of the game.', 'The king is under attack and cannot escape. The game ends.', '<b>Game Objective:</b> Checkmate the opponent’s king.', { title: '<b>Task:</b>', items: ['Checkmate the black king in one move.'] }],
           chess: [
             { cell: 1, element: 'br' },
             { cell: 2, element: 'bn' },
@@ -279,7 +335,7 @@
             { cell: 63, element: 'wn' },
             { cell: 62, element: 'wb' },
             { cell: 61, element: 'wk' },
-            { cell: 60, element: 'wq' },
+            { cell: 60, element: 'wq', active: true },
             { cell: 59, element: 'wb' },
             { cell: 58, element: 'wn' },
             { cell: 57, element: 'wr' },
@@ -292,6 +348,7 @@
             { cell: 50, element: 'wp' },
             { cell: 49, element: 'wp' },
           ],
+          answer: [[1, 32]],
         },
 
         {
@@ -300,21 +357,22 @@
           content: [
             '<b>Lesson Objective:</b> learn what a draw is.',
             {
-              title: 'There are several situations in which a draw is declared:',
+              title: 'There are several situations where a draw is declared:',
               items: [
-                '<b>Stalemate:</b> When the player to move has no legal move and their king is not in check.',
-                '<b>Threefold repetition:</b> If the same position occurs three times with the same possible moves for both sides.',
-                '<b>50-move rule:</b> If in the last 50 moves, no pawn has moved and no piece has been captured.',
-                '<b>Insufficient material:</b> If neither side has enough pieces to checkmate (e.g., king against king or king and bishop against king).',
+                '<b>Stalemate:</b> When the player whose turn it is to move cannot make any legal move, and their king is not in check.',
+                '<b>Threefold repetition:</b> If the same position occurs three times with the same player to move and the same possible moves for both sides.',
+                '<b>50-move rule:</b> If no pawn has moved and no piece has been captured in the last 50 moves.',
+                '<b>Insufficient material:</b> If neither side has enough pieces to checkmate the opponent (e.g., king versus king or king and bishop versus king).',
               ],
             },
-            { title: '<b>Assignment:</b>', items: ['Make a move that results in a draw.'] },
+            { title: '<b>Task:</b>', items: ['Make a move that leads to a draw.'] },
           ],
           chess: [
             { cell: 12, element: 'bk' },
-            { cell: 35, element: 'wk' },
+            { cell: 35, element: 'wk', active: true },
             { cell: 27, element: 'bp' },
           ],
+          answer: [[1, 27]],
         },
       ];
 

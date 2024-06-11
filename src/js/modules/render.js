@@ -54,9 +54,10 @@ const imgHeight = () => {
   }
 };
 
-const madeMoves = (id, answer) => {
+const madeMoves = (id, lesson) => {
   const chess = document.getElementById('chess');
   const cells = chess.querySelectorAll('.chess-item');
+  const { answer } = lesson;
 
   const result = [];
   const check = (cell) => {
@@ -78,7 +79,52 @@ const madeMoves = (id, answer) => {
     return false;
   };
 
-  function fn() {
+  // Функции для обработки ходов
+  const makePawnPromotion = (picture) => (
+    new Promise((r) => {
+      const box = document.createElement('div');
+      box.classList.add('chess-promotion');
+
+      const figures = ['wn', 'wb', 'wr', 'wq'];
+      figures.forEach((f) => {
+        const img = document.createElement('img');
+        img.classList.add('chess-promotion__img');
+        img.src = `/common_files/img/chess-themes/${f}.png`;
+
+        box.append(img);
+      });
+
+      chess.parentNode.prepend(box);
+      box.addEventListener('click', (e) => {
+        if (e.target.classList.contains('chess-promotion__img')) {
+          picture.children[0].src = e.target.src;
+          box.remove();
+          r();
+        }
+      });
+    })
+  );
+
+  const makeCastling = (cell) => {
+    if (cell === 62) {
+      const currentNode = chess.querySelector('[data-cell="64"]');
+      const newNode = chess.querySelector('[data-cell="61"]');
+      [newNode.innerHTML, currentNode.innerHTML] = [currentNode.innerHTML, newNode.innerHTML];
+    } else {
+      const currentNode = chess.querySelector('[data-cell="57"]');
+      const newNode = chess.querySelector('[data-cell="60"]');
+      [newNode.innerHTML, currentNode.innerHTML] = [currentNode.innerHTML, newNode.innerHTML];
+    }
+  };
+
+  const makeTakedown = (to, from) => {
+    if (to - 9 === from) {
+      const p = chess.querySelector(`[data-cell="${from + 8}"]`);
+      p.innerHTML = '';
+    }
+  };
+
+  async function fn() {
     if (this.dataset.active) {
       const picture = this.querySelector('.chess-item__image');
 
@@ -90,9 +136,29 @@ const madeMoves = (id, answer) => {
       if (picture.classList.contains('chess-item__image--active')) {
         picture.classList.remove('chess-item__image--active');
         moves.forEach((m) => m.classList.remove('chess-item--active'));
+
+        // Проверка для рокировки
+        if (lesson.move === 'castling') {
+          chess.querySelector('[data-cell="59"]').classList.remove('chess-item--active');
+        }
+
+        // Проверка для взятия на проходе
+        if (lesson.move === 'takedown') {
+          chess.querySelector(`[data-cell="${this.dataset.cell - 9}"]`).classList.remove('chess-item--active');
+        }
       } else {
         picture.classList.add('chess-item__image--active');
         moves.forEach((m) => m.classList.add('chess-item--active'));
+
+        // Проверка для рокировки
+        if (lesson.move === 'castling') {
+          chess.querySelector('[data-cell="59"]').classList.add('chess-item--active');
+        }
+
+        // Проверка для взятия на проходе
+        if (lesson.move === 'takedown') {
+          chess.querySelector(`[data-cell="${this.dataset.cell - 9}"]`).classList.add('chess-item--active');
+        }
       }
     } else if (this.classList.contains('chess-item--active')) {
       const picture = chess.querySelector('.chess-item__image--active');
@@ -106,18 +172,33 @@ const madeMoves = (id, answer) => {
       const moves = chess.querySelectorAll('.chess-item--active')
         .forEach((m) => m.classList.remove('chess-item--active'));
 
-      delete picture.parentNode.dataset.active;
+      const parent = picture.parentNode;
+      delete parent.dataset.active;
 
       this.append(picture);
       this.dataset.active = true;
 
       const prefix = check(this.dataset.cell);
 
+      if (lesson.move === 'pawnPromotion') {
+        await makePawnPromotion(picture);
+      }
+
+      if (lesson.move === 'castling') {
+        makeCastling(Number(this.dataset.cell));
+      }
+
+      if (lesson.move === 'takedown') {
+        makeTakedown(Number(parent.dataset.cell), Number(this.dataset.cell));
+      }
+
       if (prefix === 'finish') {
         localStorage.setItem(`lesson-${id}-finish`, true);
         if (!finishCourse()) {
           modal('finish');
         }
+
+        removeEvents();
       }
 
       if (!prefix) {
@@ -135,6 +216,11 @@ const madeMoves = (id, answer) => {
 
   const updatedCells = chess.querySelectorAll('.chess-item');
   updatedCells.forEach((c) => { c.addEventListener('click', fn); });
+
+  // Удаление обработчиков, чтобы игрок не взаимодействовал после завершения
+  const removeEvents = () => {
+    updatedCells.forEach((c) => { c.removeEventListener('click', fn); });
+  };
 };
 
 const render = (idLesson) => {
@@ -248,7 +334,7 @@ const render = (idLesson) => {
   fillInLesson();
 
   // Обрабатываем доступные ходы
-  madeMoves(idLesson, lesson.answer);
+  madeMoves(idLesson, lesson);
 };
 
 const initialisationLevel = () => {
