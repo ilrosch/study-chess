@@ -89,7 +89,7 @@ const madeMoves = (id, lesson) => {
       figures.forEach((f) => {
         const img = document.createElement('img');
         img.classList.add('chess-promotion__img');
-        img.src = `/common_files/img/chess-themes/${f}.png`;
+        img.src = `../common_files/img/chess-themes/${f}.png`;
 
         box.append(img);
       });
@@ -320,7 +320,7 @@ const render = (idLesson) => {
       picture.setAttribute('data-name', el);
       picture.setAttribute('name', 'picture');
       const img = document.createElement('img');
-      img.src = `/common_files/img/chess-themes/${el}.png`;
+      img.src = `../common_files/img/chess-themes/${el}.png`;
 
       if (active) {
         cell.setAttribute('data-active', active);
