@@ -30,7 +30,7 @@
     <header class="header" id="header">
       <div class="container">
         <div class="header__body">
-          <a href="/" class="header__logo header-color opacity" title="Название проекта">StudyChess</a>
+          <a href="#" class="header__logo header-color opacity" title="Название проекта">StudyChess</a>
           <div class="header__btns">
             <a href="#" class="btn header__btn br-3 header-color opacity" id="header-btn-prev" title="Предыдущий урок" aria-label="Переход к предыдущему уроку">
               <span class="header__btn-arrow arrow"></span>
@@ -301,13 +301,13 @@
           content: ['<b>Цель урока:</b> узнать, что такое шах королю.', 'Король находится под ударом, но может уйти.', { title: '<b>Задание:</b>', items: ['Поставьте шах черному королю. Для этого сделайте ход слоном.'] }],
           chess: [
             { cell: 12, element: 'bk' },
-            { cell: 51, element: 'wb', active: true },
+            { cell: 34, element: 'wr', active: true },
             { cell: 62, element: 'wk' },
             { cell: 55, element: 'wp' },
           ],
           answer: [
-            [1, 30],
-            [1, 33],
+            [1, 10],
+            [1, 36],
           ],
         },
 
@@ -316,41 +316,17 @@
           title: 'Урок 12: Шах и мат',
           content: ['<b>Цель урока:</b> узнать, что такое мат и основная цель игры.', 'Король под ударом и не может уйти. Партия заканчивается.', '<b>Цель игры:</b> Поставить мат королю противника.', { title: '<b>Задание:</b>', items: ['Поставьте мат черному королю за один ход.'] }],
           chess: [
-            { cell: 1, element: 'br' },
-            { cell: 2, element: 'bn' },
-            { cell: 3, element: 'bb' },
-            { cell: 4, element: 'bq' },
-            { cell: 5, element: 'bk' },
-            { cell: 6, element: 'bb' },
-            { cell: 7, element: 'bn' },
-            { cell: 8, element: 'br' },
-            { cell: 9, element: 'bp' },
-            { cell: 10, element: 'bp' },
-            { cell: 11, element: 'bp' },
-            { cell: 12, element: 'bp' },
+            { cell: 6, element: 'bk' },
             { cell: 13, element: 'bp' },
-            { cell: 30, element: 'bp' },
-            { cell: 31, element: 'bp' },
-            { cell: 16, element: 'bp' },
+            { cell: 14, element: 'bp' },
+            { cell: 15, element: 'bp' },
 
-            { cell: 64, element: 'wr' },
-            { cell: 63, element: 'wn' },
-            { cell: 62, element: 'wb' },
-            { cell: 61, element: 'wk' },
-            { cell: 60, element: 'wq', active: true },
-            { cell: 59, element: 'wb' },
-            { cell: 58, element: 'wn' },
-            { cell: 57, element: 'wr' },
-            { cell: 56, element: 'wp' },
-            { cell: 55, element: 'wp' },
-            { cell: 54, element: 'wp' },
-            { cell: 37, element: 'wp' },
-            { cell: 44, element: 'wp' },
-            { cell: 51, element: 'wp' },
-            { cell: 50, element: 'wp' },
-            { cell: 49, element: 'wp' },
+            { cell: 64, element: 'wr', active: true },
+            { cell: 29, element: 'wn', active: true },
+            { cell: 26, element: 'wp', active: true },
+            { cell: 45, element: 'wk', active: true },
           ],
-          answer: [[1, 32]],
+          answer: [[1, 8]],
         },
 
         {

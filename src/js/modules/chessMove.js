@@ -30,13 +30,13 @@ const getAvailableMoves = (name, position) => {
   const getMovesBishop = () => {
     const moves = [];
     // диагональ вправо-вниз
-    for (let i = position + 9; i <= 64 && (i - 1) % 8 !== 0; i += 9) moves.push(i);
+    for (let i = position; i <= 64; i += 9) moves.push(i);
     // диагональ вправо-вверх
-    for (let i = position - 7; i > 0 && i % 8 !== 0; i -= 7) moves.push(i);
+    for (let i = position; i > 0 && i <= 64 && (i - 1) % 8 !== 0; i -= 7) moves.push(i);
     // диагональ влево-вниз
-    for (let i = position + 7; i <= 64 && i % 8 !== 0; i += 7) moves.push(i);
+    for (let i = position; i > 0 && i <= 64 && i % 8 !== 0; i += 7) moves.push(i);
     // диагональ влево-вверх
-    for (let i = position - 9; i > 0 && (i - 1) % 8 !== 0; i -= 9) moves.push(i);
+    for (let i = position; i > 0; i -= 9) moves.push(i);
     return moves;
   };
 

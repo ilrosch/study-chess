@@ -196,6 +196,7 @@
 }
 
 .lesson-right {
+  position: relative;
   width: calc(56% - 25px);
 
   @media (max-width: 900px) {
@@ -320,6 +321,14 @@
   &__img {
     width: 50px;
     cursor: pointer;
+
+    @media (max-width: 900px) {
+      width: 40px;
+    }
+
+    @media (max-width: 425px) {
+      width: 30px;
+    }
   }
 }
 
